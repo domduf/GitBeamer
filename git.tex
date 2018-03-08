@@ -1,0 +1,81 @@
+\documentclass[10pt]{beamer}
+\usetheme{Montpellier}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\author{Dominique DUFOUR domduf.com}
+\title{Git}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+%\institute{} 
+%\date{} 
+%\subject{} 
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\begin{frame}{Qu'est-ce que c'est, à quoi ça sert, qui qu'a fait ça ?}
+\framesubtitle{parce que ça n'a pas l'air simple...}
+
+Lorsque le noyau de Linux devint un peu compliqué à faire évoluer (un grand nombre de développeurs étaient sur le coup, maintenir un historique des versions commençait à devenir chaud), un homme très important, \textbf{Linus Torvalds}, le créateur de Linux se retroussa les manches et créa ce formidable outil.
+
+---
+
+Voilà déjà un petit lien si vous êtes perdus ou curieux.
+\\
+lien en dur: \url{https://git-scm.com/book/fr/v2/}
+
+\href{https://git-scm.com/book/fr/v2/}{la version 2 du book}
+
+\end{frame}
+
+
+
+\begin{frame}{L'intérêt de Git.}{sinon c'est pas la peine...}
+
+Si vous avez déjà travaillé sur un projet,, tel la construction d'un site internet, \textbf{avec une autre personne}, vous vous êtes 
+certainement déjà retrouvé avec ce genre de chose:
+
+\includegraphics[width=150pt]{SiteAvecUneAUtrePersonne.png}
+C'est à dire un répertoire rempli de dossiers du même site, ayant un nom de version différent, et au bout du compte...\textbf{bordélique}.
+
+\end{frame}
+
+
+
+\begin{frame}
+Git va permettre de faire plusieurs choses \textbf{très intéressantes}:
+\begin{itemize}
+\item Permettre d'utiliser \textbf{un seul dossier}
+\end{itemize}
+\includegraphics[width=200pt]{SiteAvecUneAUtrePersonneGit.png}
+
+\begin{itemize}
+\item sauvegarder les anciennes versions du site, c'est à dire tout le boulot précédant, dans ce même dossier, \textbf{de façon transparente}.
+\item \textbf{partager} votre version avec votre binôme, en ligne.
+\item travailler sur une partie du site, pendant que votre binôme s'occupe d'une autre, et ensuite "mélanger" votre travail, de façon \textbf{non destructive}.
+\item 
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+La suite au prochain épisode...
+\end{frame}
+
+\end{document}
