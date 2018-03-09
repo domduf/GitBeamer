@@ -17,29 +17,36 @@
 %\institute{} 
 %\date{} 
 %\subject{} 
+
+
+
+
 \begin{document}
 
 \begin{frame}
 \titlepage
 \end{frame}
 
-\begin{frame}
+\begin{frame}{table}
 \tableofcontents
 \end{frame}
+
 \section{Présentation}
 
 \begin{frame}{Qu'est-ce que c'est, à quoi ça sert, qui qu'a fait ça ?}
+
 \framesubtitle{parce que ça n'a pas l'air simple...}
 
-Lorsque le noyau de Linux devint un peu compliqué à faire évoluer (un grand nombre de développeurs étaient sur le coup, maintenir un historique des versions commençait à devenir chaud), un homme très important, \textbf{Linus Torvalds}, le créateur de Linux se retroussa les manches et créa ce formidable outil.
+Lorsque le noyau de Linux\cite{noauthor_git_nodate} devint un peu compliqué à faire évoluer (un grand nombre de développeurs étaient sur le coup, maintenir un historique des versions commençait à devenir chaud), un homme très important, \textbf{Linus Torvalds}, le créateur de Linux se retroussa les manches et créa ce formidable outil.
 
 ---
 
 Voilà déjà un petit lien si vous êtes perdus ou curieux.
 \\
-lien en dur: \url{https://git-scm.com/book/fr/v2/}
 
-\href{https://git-scm.com/book/fr/v2/}{la version 2 du book}
+\href{https://git-scm.com/book/fr/v2/}{la version 2 du git-book}: \url{https://git-scm.com/book/fr/v2/}
+
+
 
 \end{frame}
 
@@ -47,7 +54,7 @@ lien en dur: \url{https://git-scm.com/book/fr/v2/}
 
 \begin{frame}{L'intérêt de Git.}{sinon c'est pas la peine...}
 
-Si vous avez déjà travaillé sur un projet,, tel la construction d'un site internet, \textbf{avec une autre personne}, vous vous êtes 
+Si vous avez déjà travaillé sur un projet, tel la construction d'un site internet, \textbf{avec une autre personne}, vous vous êtes 
 certainement déjà retrouvé avec ce genre de chose:
 
 \includegraphics[width=150pt]{SiteAvecUneAUtrePersonne.png}
@@ -80,11 +87,84 @@ Git va permettre de faire plusieurs choses \textbf{très intéressantes}:
 
 \section{Installer}
 
+\begin{frame}
+Pour tous les systèmes, lisez d'abord la page ici:
+\url{https://git-scm.com/book/fr/v2} à \textbf{la section 1.5}
+\end{frame}
+
+\begin{frame}{Linux}
+
+\end{frame}
 
 
 \section{Utiliser en local}
 
+
+\begin{frame}{Utiliser en local}
+Lorsqu'on parle d'utilisation en local, cela concerne votre travail sur votre propre ordinateur.
+
+Sans pour l'instant parler de partage de votre projet avec votre ou vos collaborateurs.
+
+Vous disposez d'un dossier, par exemple un dossier de site web nommé \textbf{monSite}, qui se trouve dans le dossier \textbf{htdocs} de votre serveur local xampp ( ou lampp sous Linux):
+
+\includegraphics[width=180pt]{monSite.png}
+Vous allez ouvrir une console (sous Windows, un clic droit sur le dossier \textbf{monSite} va vous proposer l'option d'ouverture de la console, si git est installé)
+\end{frame}
+
+\begin{frame}
+
+
+\end{frame}
+
+\subsection{les commandes indispensables}
+
+\begin{frame}{les commandes indispensables}
+\begin{itemize}
+\item git status
+
+Permet de \textbf{visualiser} les fichiers qui ont été modifiés, ajoutés, supprimés, depuis le dernier commit
+
+\item git add
+
+Permet d'\textbf{ajouter} les fichiers qui devront être \textbf{suivis} dans leur version lors du prochain commit.
+
+\item git commit
+
+Permet de faire \textbf{rentrer dans l'historique} tous les fichiers "marqués" par le git add
+\item git log
+
+Va afficher un historique des commits déja réalisés.
+\includegraphics[width=150pt]{git-log.png}
+
+
+\end{itemize}
+\end{frame}
+
+
 \subsection{les alias}
+
+\begin{frame}{Les alias}
+
+Les alias sont des raccourcis de commande\footnote{\url{https://github.com/domduf/git_trucs_et_astuces/blob/master/alias_utiles.txt}}.
+
+Ces raccourcis sont appliqués bien sûr aux commandes les plus utilisées, et vont vous faire gagner du temps.
+
+On les définit soi-même (une foi pour toute) en ligne de commande, en tapant:
+
+ \textbf{git config --global alias.nomDeLAlias commande} 
+ 
+ \smallbreak
+ 
+Par exemple, pour utiliser \textbf{git st} au lieu de \textbf{git status} , la
+commande de création de l'alias sera:
+
+\textbf{git config --global alias.st status}\\
+
+\includegraphics[width=150pt]{git-status.png} \includegraphics[width=150pt]{git-st.png}
+
+
+
+\end{frame}
 
 \subsection{le fichier .gitignore}
 \subsection{Premiers Commits}
@@ -92,11 +172,37 @@ Git va permettre de faire plusieurs choses \textbf{très intéressantes}:
 
 \section{Le dépôt sur Github}
 
-\subsection{Pousser/push}
-\subsection{Tirer/pull}
+\subsection{Mise à jour / fetch}
+\subsection{Pousser / push}
+\subsection{Tirer / pull}
 
 
 \section{Les branches}
+
+\subsection{Politique de travail }
+\begin{frame}{Politique de travail  \footnote{https://bioinfo-fr.net/git-usage-collaboratif}}
+
+
+\begin{itemize}
+  \item vous faites une branche pour ajouter une nouvelle fonctionnalité
+  
+  \item  en plein milieu on vous demande de corriger un bug en urgence
+  
+   \item     vous ne le faites pas dans votre nouvelle branche car le code n'est pas encore fonctionnel
+   
+        vous ne le faites pas non plus dans la branche principale car celle-ci ne doit pas être utilisée comme branche de développement
+        
+  \item          vous créez une seconde branche depuis la branche principale pour corriger le bug
+  
+   \item         vous fusionnez cette seconde branche avec la branche principale une fois la correction terminée
+  
+  \item          vous terminez votre ajout de fonctionnalité sur la première branche
+    
+    \item        vous fusionnez votre première branche avec la (nouvelle) branche principale en réglant les conflits éventuels
+\end{itemize}
+ 
+
+\end{frame}
 
 \section{Mettre en commun/Merger}
 
@@ -105,10 +211,14 @@ Git va permettre de faire plusieurs choses \textbf{très intéressantes}:
 
 
 \begin{frame}
-La suite au prochain épisode...
+La suite au prochain épisode... 
 pour les curieux, le code de ce document est là:
 
 \href{https://github.com/domduf/GitBeamer}{https://github.com/domduf/GitBeamer}
 \end{frame}
+
+
+
+
 
 \end{document}
