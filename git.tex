@@ -13,7 +13,7 @@
 \title{Git}
 %\setbeamercovered{transparent} 
 %\setbeamertemplate{navigation symbols}{} 
-%\logo{} 
+\logo{\includegraphics[width=18pt]{domduf.jpeg}} 
 %\institute{} 
 %\date{} 
 %\subject{} 
@@ -37,12 +37,13 @@
 
 \framesubtitle{parce que ça n'a pas l'air simple...}
 
-Lorsque le noyau de Linux\cite{noauthor_git_nodate} devint un peu compliqué à faire évoluer (un grand nombre de développeurs étaient sur le coup, maintenir un historique des versions commençait à devenir chaud), un homme très important, \textbf{Linus Torvalds}, le créateur de Linux se retroussa les manches et créa ce formidable outil.
+Lorsque le noyau de Linux devint un peu compliqué à faire évoluer (un grand nombre de développeurs étaient sur le coup, maintenir un historique des versions commençait à devenir chaud), un homme très important, \textbf{Linus Torvalds}, le créateur de Linux se retroussa les manches et créa ce formidable outil.
 
----
+\begin{center}
+\includegraphics[width=150pt]{kernel.png}
+\end{center}
 
-Voilà déjà un petit lien si vous êtes perdus ou curieux.
-\\
+Voilà \textbf{le} lien du \textbf{livre de référence Git}, si vous êtes perdus ou curieux.
 
 \href{https://git-scm.com/book/fr/v2/}{la version 2 du git-book}: \url{https://git-scm.com/book/fr/v2/}
 
@@ -57,7 +58,8 @@ Voilà déjà un petit lien si vous êtes perdus ou curieux.
 Si vous avez déjà travaillé sur un projet, tel la construction d'un site internet, \textbf{avec une autre personne}, vous vous êtes 
 certainement déjà retrouvé avec ce genre de chose:
 
-\includegraphics[width=150pt]{SiteAvecUneAUtrePersonne.png}
+\includegraphics[height=120pt]{SiteAvecUneAUtrePersonne.png} \includegraphics[height=120pt]{bordel.jpg}
+
 C'est à dire un répertoire rempli de dossiers du même site, ayant un nom de version différent, et au bout du compte...\textbf{bordélique}.
 
 \end{frame}
@@ -74,31 +76,64 @@ Git va permettre de faire plusieurs choses \textbf{très intéressantes}:
 \begin{itemize}
 \item sauvegarder les anciennes versions du site, c'est à dire tout le boulot précédant, dans ce même dossier, \textbf{de façon transparente}.
 \item \textbf{partager} votre version avec votre binôme, en ligne.
+\item gérer les \textbf{conflits de version} sans destruction définitive du code.
 \item travailler sur une partie du site, pendant que votre binôme s'occupe d'une autre, et ensuite "mélanger" votre travail, de façon \textbf{non destructive}.
-\item 
+
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}
 
-\end{frame}
 
 
 \section{Installer}
 
-\begin{frame}
-Pour tous les systèmes, lisez d'abord la page ici:
-\url{https://git-scm.com/book/fr/v2} à \textbf{la section 1.5}
+\begin{frame}{Installer}
+
+\includegraphics[width=200pt]{install-git-2.png}
+
+
+Pour tous les systèmes\footnote{image source: \url{https://www.studytonight.com/github/}}, lisez d'abord la page ici:
+\url{https://git-scm.com/book/fr/v2} à \textbf{la section 1.5} et laissez vous guider !
 \end{frame}
 
-\begin{frame}{Linux}
+
+
+
+\subsection{Premières configurations  }
+
+
+\begin{frame}{}
+Il faut, pour pouvoir par la suite utiliser Git, entrer vos coordonnées.\footnote{\url{https://git-scm.com/book/fr/v2} à la section 1.6} \textit{Attention les options sont précédées de deux tirets}.
+
+\begin{itemize}
+\item  git config --global user.name "Prenom Nom"
+
+Configure vos \textbf{Prénom et Nom}, à mettre entre guillemets.
+
+\item  git config --global user.email votre.adresse@email.com
+
+Configure votre \textbf{adresse email} (utile par la suite avec le dépôt en ligne Github)
+
+\item git config --list
+
+Vous montre les configurations déjà effectuées. Voici ma configuration personnelle
+\footnote{pour les alias, voir section~\ref{alias}}
+
+\includegraphics[width=180pt]{git-config-list.png}
+
+\end{itemize}
+
+
+
 
 \end{frame}
+
 
 
 \section{Utiliser en local}
 
+\subsection{initialiser un dépôt local}
 
 \begin{frame}{Utiliser en local}
 Lorsqu'on parle d'utilisation en local, cela concerne votre travail sur votre propre ordinateur.
@@ -112,7 +147,47 @@ Vous allez ouvrir une console (sous Windows, un clic droit sur le dossier \textb
 \end{frame}
 
 \begin{frame}
+Voici un aperçu d'un terminal (ici sous Linux).
+Le vôtre doit être différent, mais vous allez pouvoir taper des commandes...
+\includegraphics[width=180pt]{terminal.png}
 
+Pour commencer un\textbf{ "git init"} pour que git puisse être utilisé dans ce dossier.
+
+Puis un \textbf{git status} nous montre l'état de notre suivi de version:
+\includegraphics[width=180pt]{git-init-status.png}
+
+\end{frame}
+
+
+\begin{frame}
+Vous décidez d'inclure dans votre historique le seul fichier index.html:
+
+\textbf{git add . } (notez la présence du point, qui signifie ici "tout ce qui n'est pas suivi")
+
+Puis un \textbf{git status} nous montre l'état de notre suivi de version:
+\includegraphics[width=180pt]{git-add-status.png}
+
+Pour l'instant, les modifications ne sont \textbf{pas encore "enregistrées"} au niveau des étapes de votre projet, pour cela...
+
+\begin{center}
+\begin{Large}
+IL FAUT COMMITER
+\end{Large}
+\end{center}
+
+\end{frame}
+
+\subsection{premier commit}
+
+\begin{frame}{Premier commit}
+
+"Commit" peut se comprendre comme:
+
+\begin{itemize}
+\item Enregistrer une étape de mon travail à un instant "t" pour pouvoir y avoir accès dans le futur.
+
+Par exemple pour pouvoir revenir en arrière si je continue mon travail et que j'estime que ce que j'ai fait n'est pas conforme à mes attentes.
+\end{itemize}
 
 \end{frame}
 
@@ -142,7 +217,7 @@ Va afficher un historique des commits déja réalisés.
 
 
 \subsection{les alias}
-
+\label{alias}
 \begin{frame}{Les alias}
 
 Les alias sont des raccourcis de commande\footnote{\url{https://github.com/domduf/git_trucs_et_astuces/blob/master/alias_utiles.txt}}.
@@ -167,10 +242,22 @@ commande de création de l'alias sera:
 \end{frame}
 
 \subsection{le fichier .gitignore}
-\subsection{Premiers Commits}
+
 
 
 \section{Le dépôt sur Github}
+
+\begin{frame}
+L'intérêt de Git, c'est aussi et surtout de pouvoir travailler sur un même projet à plusieurs...
+
+Un site internet est souvent construit avec au minimum:
+\begin{itemize}
+\item un responsable de projet
+\item un plusieurs codeur de la structure du site
+\item un ou plusieurs graphiste
+
+\end{itemize}
+\end{frame}
 
 \subsection{Mise à jour / fetch}
 \subsection{Pousser / push}
@@ -180,8 +267,17 @@ commande de création de l'alias sera:
 \section{Les branches}
 
 \subsection{Politique de travail }
-\begin{frame}{Politique de travail  \footnote{https://bioinfo-fr.net/git-usage-collaboratif}}
 
+\begin{frame}{Politique de travail, diapo 1/2 \footnote{\url{https://bioinfo-fr.net/git-usage-collaboratif}}}
+
+\begin{center}
+\includegraphics[width=320pt]{politique_branche.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Politique de travail, diapo 2/2}
 
 \begin{itemize}
   \item vous faites une branche pour ajouter une nouvelle fonctionnalité
@@ -200,6 +296,7 @@ commande de création de l'alias sera:
     
     \item        vous fusionnez votre première branche avec la (nouvelle) branche principale en réglant les conflits éventuels
 \end{itemize}
+
  
 
 \end{frame}
@@ -211,10 +308,15 @@ commande de création de l'alias sera:
 
 
 \begin{frame}
-La suite au prochain épisode... 
+La suite au prochain épisode...
+ 
 pour les curieux, le code de ce document est là:
 
 \href{https://github.com/domduf/GitBeamer}{https://github.com/domduf/GitBeamer}
+
+Et la \href{https://www.dropbox.com/sh/6bf9gw8q2mtqf4b/AAAy_lja36MJiDIjezwYSVIga?dl=0}{version pdf actualisée à cette adresse Dropbox}
+\url{https://www.dropbox.com/sh/6bf9gw8q2mtqf4b/AAAy_lja36MJiDIjezwYSVIga?dl=0}
+
 \end{frame}
 
 
